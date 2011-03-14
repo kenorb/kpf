@@ -1,0 +1,44 @@
+== Configuration ==
+
+To use this module, you install and enable it in admin/modules.
+Taxonomy_xml functions are available to users who have the access
+right to "administer taxonomy." (User access rights can be set from
+admin/user/configure/permission.)
+
+New options will become available under
+/admin/content/taxonomy/import
+/admin/content/taxonomy/export
+
+== Installation (semi-optional) ==
+
+The RDF format functions require the download and install of the ARC parser.
+http://arc.semsol.org/
+
+This can be installed EITHER :
+  in a subdirectory of this module as
+  modules/taxonomy_xml/arc
+  so the file
+  modules/taxonomy_xml/arc/ARC_rdfxml_parser.php
+  ... and others are available there
+OR
+  by using the libraries.module
+  http://drupal.org/project/libraries
+  and installing arc in
+  sites/all/libraries/arc
+
+== Installation (semi-optional 2) ==
+
+To import huge remote vocabularies, structure support is only possible
+if the system records a GUID (usually a URI) 
+so we can match local terms against remote identifiers.
+
+Without this support, recursion will be disabled.
+
+This requires that you use the taxonomy_guid (Easy) 
+or taxonomy_enhancer (some assembly required)
+or rdf module
+http://drupal.org/project/rdf
+and more, as described in help/rdf.html
+
+=============================
+See the help folder for more.

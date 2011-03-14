@@ -1,0 +1,12 @@
+; $Id: taxonomy_guid.info,v 1.1.2.1 2010/08/18 06:26:03 dman Exp $
+name = Taxonomy GUID
+description = Supports an extra Global ID field on taxonomy terms (usually a URI)
+dependencies[] = taxonomy
+package = "Taxonomy"
+core=6.x
+; Information added by drupal.org packaging script on January 1, 1970 - 00:00
+version = "6.x-2.0"
+core = "6.x"
+project = "taxonomy_xml"
+datestamp = "1296655546"
+

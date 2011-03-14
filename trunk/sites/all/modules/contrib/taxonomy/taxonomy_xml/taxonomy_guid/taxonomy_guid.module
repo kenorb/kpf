@@ -1,0 +1,83 @@
+<?php
+// $Id: taxonomy_guid.module,v 1.1.2.1 2010/08/18 06:26:03 dman Exp $
+
+/**
+ * @file Adds a GUID field to taxonomy terms
+ * 
+ * To refer consistently to taxonomy terms or concepts imported from an external
+ * library, and to synchronize batch imports and re-linking of large
+ * vocabularies, we need a consistent ID. The built-in Drupal taxonomy term IDs
+ * are not strong enough for that, as they are system-defined, and not portable
+ * between systems.
+ * 
+ * Use this module if you are importing vocabularies from remote sources that
+ * require recursion. It is not required (though may still be helpful) for all-
+ * in-one vocab imports.
+ * 
+ * This module is a replacement/adjunct to the taxonomy_xml dependence on
+ * taxonomy_enhancer. That project is abandoned in D6, and redundant in D7
+ * (where we have real fields)
+ * 
+ * Taxonomy_xml REQUIRES some method to save and retrieve IDs
+ * 
+ * This module MODIFIES A CORE DATABASE TABLE which is not best-practice, but
+ * should be non-invasize (safe) and low-impact (rather than adding a single-use
+ * table that will require extra database lookups.
+ * 
+ * Some credt given to taxonomy_enhancer module, which a small percent of the
+ * code was modelled on.
+ * 
+ * There are a limited number of options. When this module is enabled, the
+ * function becomes available for all vocabularies.
+ */
+ 
+
+ /**
+ * Implementation of hook_form_FORM_ID_alter().
+ *
+ * @param array $form
+ * @param array $form_state
+ */
+function taxonomy_guid_form_taxonomy_form_term_alter(&$form, &$form_state) {
+  $term = NULL;
+  // $form['#term'] or $form_state['term'] 
+  // should have loaded the term already,
+  // Thanks to the autoloader?
+  if (isset($form['#term'])) {
+    $term = $form['#term']; // this comes as an array, not an obj
+  }
+  $vid = $form['vid']['#value'];
+  
+  $form['identification']['guid'] = array(
+    '#type' => 'textfield',
+    '#title' => 'GUID (Globally Unique Identifier or URI)',
+    '#default_value' => isset($term['guid']) ? $term['guid'] : NULL,
+  );
+
+}
+
+/**
+ * Special lookup for terms if they are saved with a URI or GUID
+ *
+ * @param guid ID of the term to search for.
+ * 
+ * @param $vid Optional vocab ID to filter by
+ *
+ * @return
+ *   An array of matching term objects.
+ */
+function taxonomy_guid_get_term($guid, $vid = NULL) {
+  if (! $guid) {
+    return NULL;
+  }
+  $query = "SELECT t.tid, t.* FROM {term_data} t WHERE t.guid = '%s'";
+  if ($vid) {
+    $query .= " AND t.vid = %d";
+  }
+  $db_result = db_query(db_rewrite_sql($query, 't', 'tid'), $guid, $vid);
+  $result = array();
+  while ($term = db_fetch_object($db_result)) {
+    $result[] = $term;
+  }
+  return $result;
+}

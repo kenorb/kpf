@@ -1,0 +1,42 @@
+<?php
+// $Id: taxonomy_guid.install,v 1.1.2.1 2010/08/18 06:26:03 dman Exp $
+
+/**
+ * @file
+ * (Un)Install/Update hooks for taxonomy_guid.
+ *
+ * THIS MODIFIES A CORE TABLE (but safely)
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function taxonomy_guid_install() {
+  $ret = array();
+  if (!db_column_exists('term_data', 'guid')) {
+    $term_data_schema = drupal_get_schema('term_data');
+    $new_column = array(
+      'description' => 'Tag terms with GUIDs, for portability between systems', 
+      'type' => 'varchar',
+      'length' => 256, 
+      'default' => '',
+    );
+    db_add_field($ret, 'term_data', 'guid', $new_column);
+    drupal_set_message("Modified term data column to support GUIDs");
+  }
+  return $ret;
+}
+
+/**
+ * Ensure the schema cache (used to define which attributes get serialized) 
+ * knows that it should save this new field also
+ */
+function taxonomy_guid_schema_alter(&$schema) {
+  // Add guid to existing schema.
+  $schema['term_data']['fields']['guid'] = array(
+    'description' => 'Tag terms with GUIDs, for portability between systems', 
+    'type' => 'varchar',
+    'length' => 256, 
+    'default' => '',
+  );
+}

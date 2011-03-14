@@ -1,0 +1,14 @@
+name = Marketplace File Downloads
+description = Manages Marketplace downloadable product features.
+core=6.x
+dependencies[] = mp_products
+dependencies[] = uc_file
+dependencies[] = filefield
+package = Ubercart - Marketplace - optional
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "ubercart_marketplace"
+datestamp = "1298620469"
+

@@ -1,0 +1,12 @@
+name = Marketplace
+description = REQUIRED. Setup marketplaces settings and manage your site.
+core=6.x
+dependencies[] = uc_store
+package = Ubercart - Marketplace - core
+
+; Information added by drupal.org packaging script on 2011-02-25
+version = "6.x-1.x-dev"
+core = "6.x"
+project = "ubercart_marketplace"
+datestamp = "1298620469"
+

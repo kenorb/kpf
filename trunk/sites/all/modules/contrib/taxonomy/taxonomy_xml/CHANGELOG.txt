@@ -1,0 +1,9 @@
+2011-01-09 dman
+Repaired the javascript source selector.
+Added 'file' method for providing source data. This will allow features or any module to bundle and distribute a vocab.
+Moved the guts of taxonomy_xml_import_form_submit into taxonomy_xml_fetch_and_import so it can be called from code better.
+Renamed 'source_selector' on the edit form to be 'protocol' for better labels in features arrays.
+Renamed services 'servicename' to just 'name' so we can create named vocabs easier
+CSV data is now allowed to be a super-simple one column list of term names
+Updates to the 'Features' import.
+Added a cheat to prevent features from detecting already-imported taxa as 'overridden'.
