@@ -109,7 +109,7 @@ else if (!empty($sidebar_left)) echo '<div class="art-sidebar1">' . $sidebar_lef
             }
             else {
                 echo '<p><a href="#">Contact Us</a>&nbsp;|&nbsp;<a href="#">Terms of Use</a>&nbsp;|&nbsp;<a href="#">Trademarks</a>&nbsp;|&nbsp;<a href="#">Privacy Statement</a><br />'.
-                     'Copyright &copy; 2009&nbsp;'.$site_name.'.&nbsp;All Rights Reserved.</p>';
+                     'Copyright &copy; 2011&nbsp;'.$site_name.'.&nbsp;All Rights Reserved.</p>';
             }
         ?>
         <?php if (!empty($copyright)) { echo $copyright; } ?>
@@ -120,10 +120,6 @@ else if (!empty($sidebar_left)) echo '<div class="art-sidebar1">' . $sidebar_lef
 
     </div>
 </div>
-<div class="cleared"></div>
-<p class="art-page-footer">Designed by <a href="http://www.gamingguide.net" target="_blank">USA Online Casinos</a>. Distributed by <a href="http://www.drupalthemesdownload.com" target="_blank">Drupal Themes</a>. Powered by <a href="http://www.drupal.org" target="_blank">Drupal</a>.</p>
-</div>
-
 
 <?php print $closure; ?>
 
