@@ -122,9 +122,6 @@ else if (!empty($sidebar_left)) echo '<div class="art-sidebar1">' . $sidebar_lef
 
     </div>
 </div>
-<div class="cleared"></div>
-<p class="art-page-footer">Designed by <a href="http://www.gamingguide.net" target="_blank">USA Online Casinos</a>. Distributed by <a href="http://www.drupalthemesdownload.com" target="_blank">Drupal Themes</a>. Powered by <a href="http://www.drupal.org" target="_blank">Drupal</a>.</p>
-</div>
 
 
 <?php print $closure; ?>

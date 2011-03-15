@@ -100,6 +100,7 @@ else if (!empty($sidebar_left)) echo '<div class="art-sidebar1">' . $sidebar_lef
 <?php echo art_placeholders_output($bottom1, $bottom2, $bottom3); ?>
 <?php if (!empty($banner6)) { echo '<div id="banner-6">'.$banner6.'</div>'; } ?>
 <div class="art-Footer">
+<?php if (!empty($footer)) { echo $footer; } ?>
     <div class="art-Footer-inner">
         <?php echo art_feed_icon(url('rss.xml')); ?>
         <div class="art-Footer-text">

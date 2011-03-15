@@ -18,6 +18,7 @@ regions[user1] = User 1
 regions[user2] = User 2
 regions[user3] = User 3
 regions[user4] = User 4
+regions[footer] = Footer
 regions[copyright] = Copyright
 regions[top1] = Top 1
 regions[top2] = Top 2

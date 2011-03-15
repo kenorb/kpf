@@ -743,10 +743,6 @@ text-transform: uppercase;
 	line-height: 30px;	
 }
 
-
-
-
-
 .art-header-tag-icon
 {
 	display:inline-block;
@@ -1497,6 +1493,13 @@ font-weight: bold;
 /* end Button */
 
 /* begin Footer */
+
+
+.art-Footer .art-Footer-inner .art-BlockHeader
+{
+	visibility: hidden;
+}
+
 .art-Footer
 {
 	position:relative;
@@ -1541,9 +1544,6 @@ font-weight: bold;
 	width: 17px;
     cursor: default;
 }
-
-
-
 
 .art-Footer .art-Footer-text p
 {
