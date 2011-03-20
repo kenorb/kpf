@@ -254,6 +254,25 @@ function content_profile_registration_user_register_submit($form, &$form_state) 
       $node->uid = $form_state['user']->uid;
       $node->name = $form_state['user']->name;
 
+      if (module_exists( "hierarchical_select")) {
+        $query = "SELECT distinct field_name, multiple FROM {content_node_field_instance}
+          INNER JOIN {content_node_field} USING (field_name)
+          WHERE type_name = '{$type}' AND widget_type LIKE '%_hs'";
+        $db_result = db_query($query);
+
+        //We look for all fields
+        while($item = db_fetch_array($db_result)) {
+          $field_name = $item['field_name'];
+          $val = array();
+          //The intermediary table is necessary ?
+          $field_table = $node->$field_name;
+          foreach ($field_table as $key => $value) {
+            $val[] = array('value' => $value);
+          }
+          $node->$field_name = $val;
+        }
+      }
+
       // Create the node.
       $node = node_submit($node);
       node_save($node);
